@@ -6,13 +6,14 @@ output:
   rmdshower::shower_presentation:
     self_contained: false
     theme: ribbon
+    center: true
     ratio: 4x3
     katex: true
     fig_width: 9
     fig_height: 6
 #output: 
 #  revealjs::revealjs_presentation:
-#    theme: sky
+#    theme: black
 #    highlight: pygments
 #    center: false
 #    transition: fade
@@ -100,22 +101,49 @@ Digital Humanities 2018, Mexico City, 29 June 2018
 
 
 
-## Introduction
 
-One of the most interesting aspects of language development – overlooked in a vast majority of the existing studies – is the question of the dynamics of linguistic changes. Presumably, one should expect epochs of substantial stylistic drift followed by periods of stagnation, rather than purely linear trends. 
+## Aim of the study
 
-* a timeline-centric visualization
-* ngram viewer
-* COHA
-* [@eder_historical_2016]
-
+* Introducing **a method** to trace changes in language
+* **No a priori assumptions** as to the change-makers
+* Identifying **the impactful words** over time
+* Application on the Corpus of Historical American English (COHA)
 
 
-## What is responsible for language changes?
+
+
+
+## The dynamics of language change
+
+* Purely linear trends – not very probable.
+* Rather, epochs of substantial stylistic drift follow periods of stagnation. 
+* The goal: observing the accelleration of language change.
+
+
+
+
+
+## What is responsible for a change?
 
 * A relatively small number of words that reflect changes in societies?
-    * e.g. _horse_ > _automobile_ > _car_
-    * these changes can be observed using Google N-gram Viewer
+    * (e.g. _horse_ > _automobile_ > _car_)
+* A aggregation of _numerous_ features of individually weak discrimination power?
+    * (e.g. the signal of authorship)
+
+
+
+
+
+## Data and methods
+
+* Corpus of American Historical English (COHA)
+    * ca. 400 million words
+    * different genres (_fic_, _mag_, _news_, _nf_)
+    * covering the years 1810-2009
+* A supervised classification
+    * Nearest Shrunken Centroids classifier
+    * 1,000 most frequent words
+
 
 
 
@@ -380,13 +408,16 @@ text(1970,50, labels = "baseline", pos = 3, cex = 0.6)
 # a linear model showing the change
 #abline(lm(results.mean ~ breakpoint.dates), col=rgb(1,0,0,0.6))
 points(results.mean ~ breakpoint.dates, col=rgb(0,0,1,0.6), lwd=2)
-
 ```
 
 
 
 
 
+## Why does the change periodically accelerate?
+
+* A **naive assumption** that the change can be linked to particular events in history and/or culture.
+* However, the impact of major historical breakthroughs on language **cannot be rulled out**.
 
 
 
@@ -429,12 +460,8 @@ text(1972,100, labels = "1972", pos = 2, srt = 90, cex = 0.6)
 ```
 
 
-## caption
-
-_Figure 3: A sequence of Nearest Shrunken Classification tests on 333 English texts: cross-validated results for different vectors of most frequent POS-tag 2-grams_
 
 
-In Fig. 3, the classification accuracy rates for the aforementioned corpus of 333 English texts were shown (POS-tag 2-grams, NSC classifier). As one can observe, the scores obtained for the period 1750–1850 are only slightly higher than the baseline, betraying no revolutionary changes in this period. Later, however, the stylistic drift accelerates, reaching 70% of correctly recognized test samples.
 
 
 ## Distinctive features
@@ -969,10 +996,19 @@ legend("bottomleft", legend = c("you", "my", "I", "your", "we", "our", "n't"),
 
 ## Conclusions
 
-in this paper we used a set of tailored stylometric methods to assess the question of language change over time. Our chosen techniques proved to be useful indeed; the further research will focus on tracing the very linguistic features that were responsible for the observed change. However, an important question has to be asked here: is it a change of Saussurean langue what we track with our approach, or rather the change of parole. Obviously, if texts written earlier can be separated from texts written more recently, they must share some features common for a given stage of language development. However, it is not clear if an observed change is due to, say, literary taste of the epoch or, if we face an actual change in the system here. Theoretically, the former and the latter are possible, as well as both answers together. It is also very likely that the change takes place in between: in the norm in the sense proposed by Coseriu (1958). Still there are no means to answer this question with any stylometric method, what for a linguist might be seen as a drawback. However, the proposed method informs the linguist about the fact of change, which takes place not only in lexis but also in syntax; about the speed of change and, above all, about the points where this speed accelerates.
+* The language change seems to be a **fluctuation** of rapid and slow changes.
+* **Numerous features** responsible for the change, rather than few strong predictors.
+    * unexpectedly many **function words** among the predictors
+    * increasing power of "social" function words (personal pronouns)
+* Grand question: do we observe a **language** change, or a change in **style**? (e.g. a general taste of an epoch)
 
 
-## Acknowledgements
+## Thank you!
+
+* maciejeder@gmail.com
+* [\@MaciejEder](https://twitter.com/MaciejEder)
+* [https://github.com/computationalstylistics](https://github.com/computationalstylistics)
+
 
 This research is part of project UMO-2013/11/B/HS2/02795, supported by Poland’s National Science Centre.
 
